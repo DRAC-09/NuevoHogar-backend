@@ -22,6 +22,12 @@ app.use('/cliente', clienteRouter);
 app.use('/mascota', mascotaRouter);
 app.use('/actividad', actividadRouter);   
 
+//Mensaje
+app.get('/', function(req, res){
+    res.send('Servidor Funcionando');
+});
+
+
 app.listen(app.get('puerto'), ()=>{
     console.log(`Servidor Backend del Centro de Adopción Nuevo Hogar escuchando al puerto:${app.get('puerto')}. Abra el navegador en: http://localhost:${app.get('puerto')}/`);
 });
