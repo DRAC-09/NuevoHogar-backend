@@ -4,7 +4,7 @@
   "description": "Centro de adopción de mascotas Nuevo Hogar",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "Sevilla",
@@ -23,3 +23,4 @@
     "bcrypt": "^5.1.0"
   }
 }
+
