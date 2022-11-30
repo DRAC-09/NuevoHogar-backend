@@ -50,7 +50,10 @@ router.post('/login', async (req, res) => {
     const user = await cliente.findOne({correo: correo})                                                           // Buscando usuario en la base de datos
     if(!user) return res.status(401).send('Usuario y/o Contraseña incorrectos');
     if(user.contrasenia !== contrasenia) return res.status(401).send('Usuario y/o Contraseña incorrectos');
-    return res.status(200).json(user.id);
+    return res.status(200).json({
+        id: user.id,
+        rol: user.rol,
+    });
 });
 
 
@@ -116,6 +119,7 @@ router.put('/actualizar/:id', async (req, res) =>{
         telefono: req.body.telefono,
         correo: req.body.correo,
         fotoPerfil: req.body.fotoPerfil,
+        rol: req.body.rol,
         modificacion: new Date()
     }).then(result=>{
         res.send(result);
