@@ -23,7 +23,8 @@ router.post('/register', async (req, res)=>{
                 celular: req.body.celular,
                 telefono: req.body.telefono,
                 correo: req.body.correo,
-                contrasenia: req.body.contrasenia    
+                contrasenia: req.body.contrasenia,   
+                rol: req.body.rol    
             }
         );
         //Encriptar contraseña
@@ -89,7 +90,8 @@ router.get('/:id', async (req, res) =>{
             celular:true,
             telefono:true,
             correo:true,
-            fotoPerfil:true
+            fotoPerfil:true,
+            rol:true,
         }
     ).then(result=>{
         res.send(result[0]);

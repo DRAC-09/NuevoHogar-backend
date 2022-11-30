@@ -12,7 +12,8 @@ var esquema = new mongoose.Schema({
         contrasenia:            {type: String,required: true},
         fotoPerfil:             {type: String},
         creacion:               {type: Date, default: Date.now},
-        modificacion:           {type: Date, default: Date.now}
+        modificacion:           {type: Date, default: Date.now},
+        rol:                    {type: String, required: true},
 });
 
 module.exports = mongoose.model('clientes', esquema);
