@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 //GET - Obtener todos los usuarios
-router.get('/clientes', async (req, res) =>{
+router.get('/', async (req, res) =>{
     const clientes = await cliente.find();
     res.send(clientes);
 })
