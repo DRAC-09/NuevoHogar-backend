@@ -6,6 +6,7 @@ const database = require('./modules/database-module');
 const clienteRouter = require('./routes/cliente-router');
 const mascotaRouter = require('./routes/mascota-router');
 const actividadRouter = require('./routes/actividad-router');
+const donacionRouter = require('./routes/donacion-router');
 
 require('dotenv').config();
 const app = express();
@@ -20,7 +21,8 @@ app.use(bodyParser.urlencoded({limit: '5mb', extended:true}));
 //Rutas
 app.use('/cliente', clienteRouter);
 app.use('/mascota', mascotaRouter);
-app.use('/actividad', actividadRouter);   
+app.use('/actividad', actividadRouter);
+app.use('/donacion', donacionRouter);   
 
 //Mensaje
 app.get('/', function(req, res){
