@@ -6,8 +6,27 @@ const correoModule = require('../modules/correo-module');
 const router = express.Router();
 
 
+//GET - Obtener todos los clientes
+router.get('/clientes', async (req, res) =>{
+    const clientes = await cliente.find({rol: 'cliente'});
+    res.send(clientes);
+})
 
-//POST - Registrar cliente
+//GET - Obtener todos los administradores
+router.get('/administradores', async (req, res) =>{
+    const clientes = await cliente.find({rol: 'administrador'});
+    res.send(clientes);
+})
+
+//GET - Obtener todos los administradores
+router.get('/colaboradores', async (req, res) =>{
+    const clientes = await cliente.find({rol: 'colaborador'});
+    res.send(clientes);
+})
+
+
+
+//POST - Registrar usuario
 router.post('/register', async (req, res)=>{
     let user = await cliente.findOne({correo: req.body.correo});
     if(user){
@@ -44,7 +63,7 @@ router.post('/register', async (req, res)=>{
 })
 
 
-//POST - Login cliente
+//POST - Login usuario
 router.post('/login', async (req, res) => {
     const { correo, contrasenia } = req.body;                                                               // Obteniendo datos del body
     const user = await cliente.findOne({correo: correo})                                                           // Buscando usuario en la base de datos
@@ -57,11 +76,9 @@ router.post('/login', async (req, res) => {
 });
 
 
-//GET - Obtener todos los clientes
-router.get('/', async (req, res) =>{
-    const clientes = await cliente.find();
-    res.send(clientes);
-})
+
+
+
 
 //GET - Cambio de contraseña
 router.put('/changePassword', async (req, res) =>{
@@ -78,7 +95,7 @@ router.put('/changePassword', async (req, res) =>{
     return res.status(200).json(user);
 })
 
-//GET - Obtener informacion cliente
+//GET - Obtener informacion usuario
 router.get('/:id', async (req, res) =>{
     await cliente.find(
         {
@@ -105,7 +122,7 @@ router.get('/:id', async (req, res) =>{
     })
 });
 
-//PUT - Actualizar informacion cliente
+//PUT - Actualizar informacion usuario
 router.put('/actualizar/:id', async (req, res) =>{
     await cliente.updateOne({
         _id: req.params.id
