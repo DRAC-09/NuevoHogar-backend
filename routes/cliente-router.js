@@ -1,8 +1,7 @@
 const express = require('express');
-const bcrypt = require('bcrypt');
 const cliente = require('../models/cliente');
 const correoModule = require('../modules/correo-module');
-//const jwt = require('jsonwebtoken');
+
 const router = express.Router();
 
 
@@ -52,9 +51,6 @@ router.post('/register', async (req, res)=>{
                 rol: req.body.rol    
             }
         );
-        //Encriptar contraseña
-        const salt = await bcrypt.genSalt(10);
-        user.contrasenia = await bcrypt.hash(user.contrasenia, salt);
         //Enviar correo de confirmación
         correoModule.enviarCorreo(req.body.correo, req.body.nombre); 
         //Insertar registro a la DB
