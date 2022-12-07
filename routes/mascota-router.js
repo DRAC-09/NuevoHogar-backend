@@ -31,7 +31,7 @@ router.post('/agregar', (req, res)=>{
      })
 })
 
-//PUT - Actualizar informacion cliente
+// PUT - Actualizar informacion de la mascota
 router.put('/actualizar/:id', async (req, res) =>{
      await mascota.updateOne({
           _id: req.params.id
@@ -52,5 +52,21 @@ router.put('/actualizar/:id', async (req, res) =>{
      })
 })
 
+
+// DELETE - Eliminar una mascota
+router.delete('/:id', function (req, res) {
+     mascota.remove(
+          {
+               _id: req.params.id
+          }
+     ).then(resultado => {
+          res.send(resultado);
+          res.end();
+     })
+     .catch(error => {
+          res.send(error);
+          res.end();
+     })
+});
 
 module.exports = router;

@@ -14,6 +14,7 @@ var esquema = new mongoose.Schema({
         creacion:               {type: Date, default: Date.now},
         modificacion:           {type: Date, default: Date.now},
         rol:                    {type: String, default: "cliente"},
+        historial:              {type: mongoose.SchemaTypes.Mixed},
 });
 
 module.exports = mongoose.model('clientes', esquema);

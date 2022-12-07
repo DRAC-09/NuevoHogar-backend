@@ -78,10 +78,6 @@ router.post('/login', async (req, res) => {
 });
 
 
-
-
-
-
 //GET - Cambio de contraseña
 router.put('/changePassword', async (req, res) =>{
     const {correo, contrasenia} = req.body;
@@ -148,5 +144,37 @@ router.put('/actualizar/:id', async (req, res) =>{
         res.end();
     })
 })
+
+
+
+// PUT - Añadir una mascota
+router.post('/:id/agregarMascota', function (req, res) {
+    cliente.updateMany(
+        {
+            _id: req.params.id
+        },
+        {
+            $push:{
+                historial: {
+                    _id:        req.body.id,
+                    nombre:     req.body.nombre,
+                    edad:       req.body.edad,
+                    raza:       req.body.raza,
+                    sexo:       req.body.sexo,
+                    imagen:     req.body.imagen,
+                }
+            }
+        }
+    ).then(resultado => {
+        res.send(resultado);
+        res.end();
+    })
+    .catch(error => {
+        res.send(error);
+        res.end();
+    })
+});
+
+
 
 module.exports = router;
