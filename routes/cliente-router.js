@@ -110,6 +110,7 @@ router.get('/:id', async (req, res) =>{
             correo:true,
             fotoPerfil:true,
             rol:true,
+            historial: true
         }
     ).then(result=>{
         res.send(result[0]);
